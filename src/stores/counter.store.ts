@@ -16,14 +16,14 @@ type CounterState = {
  * decrease: 카운터를 1 감소시키는 함수
  * increaseBy: 카운터를 지정된 값만큼 증가시키는 함수
  * reset: 카운터를 0으로 초기화하는 함수
- * canDecrease: 카운터를 감소시킬 수 있는지 여부를 나타내는 불린 값
+ * canDecrease: 카운터를 감소시킬 수 있는지 여부를 반환하는 getter 함수
  */
 type CounterActions = {
   increase: () => void;
   decrease: () => void;
   increaseBy: (by: number) => void;
   reset: () => void;
-  canDecrease: boolean;
+  canDecrease: () => boolean;
 };
 
 /**
@@ -72,12 +72,13 @@ const useCounterStore = create<CounterStore>((set, get) => ({
   reset: () => set({ count: 0 }),
 
   /**
-   * 카운터를 감소시킬 수 있는지 여부를 나타내는 계산된 속성입니다.
+   * 카운터를 감소시킬 수 있는지 여부를 반환하는 getter 함수입니다.
    * count가 0보다 크면 true, 그렇지 않으면 false를 반환합니다.
-   * 주의: 이 속성은 스토어 생성 시점에만 계산되므로, 동적으로 업데이트되지 않습니다.
-   * 동적 계산이 필요하다면 getter 함수로 구현하는 것이 좋습니다.
+   * 함수로 구현하여 항상 최신 count 값을 기반으로 계산합니다.
+   *
+   * @returns count > 0이면 true, 그렇지 않으면 false
    */
-  canDecrease: get().count > 0,
+  canDecrease: () => get().count > 0,
 }));
 
 // 카운터 스토어를 다른 컴포넌트에서 사용할 수 있도록 export합니다.

@@ -8,7 +8,7 @@ const CounterPanel = () => {
   const increase = useCounterStore((s) => s.increase);
   const decrease = useCounterStore((s) => s.decrease);
   const reset = useCounterStore((s) => s.reset);
-  const canDecrease = useCounterStore((s) => s.canDecrease);
+  const canDecrease = useCounterStore((s) => s.canDecrease());
 
   return (
     <div style={{ display: "grid", gap: 8, maxWidth: 240 }}>
