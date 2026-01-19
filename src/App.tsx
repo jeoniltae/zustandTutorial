@@ -3,6 +3,7 @@ import reactLogo from "./assets/react.svg";
 import viteLogo from "/vite.svg";
 import "./App.css";
 import CounterPanel from "./CounterPanel";
+import AuthPanel from "./AuthPanel";
 
 function App() {
   const [count, setCount] = useState(0);
@@ -22,7 +23,8 @@ function App() {
         {/* <button onClick={() => setCount((count) => count + 1)}>
           count is {count}
         </button> */}
-        <CounterPanel />
+        {/* <CounterPanel /> */}
+        <AuthPanel />
         <p>
           Edit <code>src/App.tsx</code> and save to test HMR
         </p>
